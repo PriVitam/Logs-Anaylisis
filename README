@@ -1,0 +1,41 @@
+This is a project for Udacity FSND. It contains two files, SLA.py and newsdata.sql.
+    The environment is a Linux virtual machine, using Vagrant on top of VirtualBox.
+    SLA.py is written in python3 and uses PostgreSQL commands.
+    The virtual machine config and newsdata.sql file were provided by Udacity.
+
+Instructions
+
+    Download Vagrant and VirtualBox
+        Vagrant -- https://www.vagrantup.com/
+        VirtualBox -- https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
+
+    Clone the FSND virtual machine repo
+        VM repo -- https://github.com/udacity/fullstack-nanodegree-vm
+
+    Clone this repo into the vagrant directory within VM directory
+    
+    Download newsdata.sql and place into the vagrant directory
+	    https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
+
+    CD into the vagrant directory
+
+    Run the following commands in order
+
+        vagrant up
+
+        vagrant ssh
+
+        cd /vagrant
+
+        psql -d news -f newsdata.sql
+
+        CREATE VIEW breq AS
+        SELECT count(*) AS nofind, time::DATE
+        FROM log
+        WHERE status != '200 OK'
+        GROUP BY time::DATE;
+
+        CREATE VIEW daytotalrequests as
+        SELECT count(*) AS allreq, time::DATE
+        FROM log
+        GROUP BY time::DATE;
